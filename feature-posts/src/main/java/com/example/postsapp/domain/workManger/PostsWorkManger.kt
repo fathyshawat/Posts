@@ -8,9 +8,14 @@ import com.example.postsapp.data.model.PostRequestModel
 import com.example.postsapp.domain.usecases.AddPostUseCase
 import com.example.postsapp.domain.usecases.DeletePostUseCase
 import com.example.postsapp.domain.usecases.UpdatePostUseCase
+import com.example.postsapp.presentation.ACTION
+import com.example.postsapp.presentation.BODY
 import com.example.postsapp.presentation.CREATE
 import com.example.postsapp.presentation.DELETE
+import com.example.postsapp.presentation.ID
+import com.example.postsapp.presentation.TITLE
 import com.example.postsapp.presentation.UPDATE
+import com.example.postsapp.presentation.USER_ID
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,14 +33,14 @@ class PostsWorkManger @AssistedInject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun doWork(): Result {
 
-        val action = inputData.getString("action")
-        val id = inputData.getInt("id", 0)
-        val userID = inputData.getInt("userID", 0)
-        val title = inputData.getString("title")
-        val body = inputData.getString("body")
+        val action = inputData.getString(ACTION)
+        val id = inputData.getInt(ID, 0)
+        val userID = inputData.getInt(USER_ID, 0)
+        val title = inputData.getString(TITLE)
+        val body = inputData.getString(BODY)
 
         when (action) {
-            UPDATE-> {
+            UPDATE -> {
                 updatePostUseCase(
                     PostRequestModel(
                         id, title, body, userID
