@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/posts_nav"
+    app:startDestination="@id/mainPostsFragment">
+
+
+    <fragment
+        android:id="@+id/mainPostsFragment"
+        tools:layout="@layout/main_fragment"
+        android:name="com.example.postsapp.presentation.mainPosts.MainPostFragment"
+        >
+
+        <action
+            android:id="@+id/action_mainPostsFragment_to_addUpdatePostFragment"
+            app:destination="@id/addUpdatePostFragment" />
+    </fragment>
+    <fragment
+        android:name="com.example.postsapp.presentation.addUpdatePost.AddUpdateFragment"
+        android:id="@+id/addUpdatePostFragment"
+        tools:layout="@layout/add_update_post_fragment">
+
+
+        <argument
+            android:name="post"
+            app:argType="com.example.postsapp.data.model.PostsModel"
+            app:nullable="true" />
+        <argument
+            android:name="action"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addUpdatePostFragment_to_mainPostsFragment"
+            app:destination="@id/mainPostsFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/mainPostsFragment"
+            app:popUpToInclusive="true"/>
+
+
+    </fragment>
+</navigation>
